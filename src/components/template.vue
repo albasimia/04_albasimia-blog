@@ -15,5 +15,6 @@
 </script>
 
 <style lang='scss' scopde>
+    @import '~/assets/scss/main.scss';
     
 </style>
