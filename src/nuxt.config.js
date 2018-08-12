@@ -2,7 +2,19 @@ module.exports = {
   // css: [
   //     '@/assets/scss/main.scss',
   // ],
-  plugins: [{ src: '~/plugins/vue-in-view', ssr: false }],
+  plugins: [{
+      src: '~/plugins/vue-in-view',
+      ssr: false
+    },
+    {
+      src: '~/plugins/flamelink',
+      ssr: true
+    },
+    {
+      src: '~/plugins/vue-markdown',
+      ssr: true
+    }
+  ],
   /*
    ** Headers of the page
    */
@@ -27,11 +39,19 @@ module.exports = {
       href: '/favicon.ico'
     }]
   },
-  // modules: [
-  //   ['nuxt-sass-resources-loader', [
-  //     '@/assets/scss/main.scss'
-  //   ]],
-  // ],
+  modules: [
+    {
+      src: 'nuxt-firebase',
+      options: {
+        apiKey: "AIzaSyAFcYcevIvsPEiUHxo34kCoWRCySbswsd4",
+        authDomain: "albasimia-blog.firebaseapp.com",
+        databaseURL: "https://albasimia-blog.firebaseio.com",
+        projectId: "albasimia-blog",
+        storageBucket: "albasimia-blog.appspot.com",
+        messagingSenderId: "692821435666"
+      }
+    }
+  ],
   /*
    ** Customize the progress bar color
    */
@@ -57,12 +77,13 @@ module.exports = {
         }],
       ],
     },
+    vendor: ['flamelink'],
     modules: [
-    ['nuxt-sass-resources-loader', [
-      '@/assets/sass/foundation/variable.scss',
-      '@/assets/sass/foundation/mixin.scss',
-    ]],
-  ],
+      ['nuxt-sass-resources-loader', [
+        '@/assets/sass/foundation/variable.scss',
+        '@/assets/sass/foundation/mixin.scss',
+      ]],
+    ],
     /*
      ** Run ESLint on save
      */

@@ -13,13 +13,18 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.1.1",
     "ajv": "^6.0.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
+    "firebase-admin": "^6.0.0",
+    "flamelink": "^0.17.1",
+    "github-markdown-css": "^2.10.0",
     "node-sass": "^4.9.2",
     "nuxt": "1.0.0-rc11",
+    "nuxt-firebase": "^0.0.3",
     "nuxt-sass-resources-loader": "^2.0.3",
     "pug-html-loader": "^1.1.5",
     "reset-css": "^4.0.1",

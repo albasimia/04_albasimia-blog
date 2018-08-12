@@ -5,6 +5,9 @@ Vue.use(Router)
 
 const _89391c10 = () => import('../../src/pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 const _4e968fc4 = () => import('../../src/pages/template.vue' /* webpackChunkName: "pages/template" */).then(m => m.default || m)
+const _be56a522 = () => import('../../src/pages/blog/index.vue' /* webpackChunkName: "pages/blog/index" */).then(m => m.default || m)
+const _4b7f24b2 = () => import('../../src/pages/blog/index/index.vue' /* webpackChunkName: "pages/blog/index/index" */).then(m => m.default || m)
+const _3592ab9a = () => import('../../src/pages/blog/index/_id.vue' /* webpackChunkName: "pages/blog/index/_id" */).then(m => m.default || m)
 
 
 
@@ -49,6 +52,22 @@ export function createRouter () {
 			path: "/template",
 			component: _4e968fc4,
 			name: "template"
+		},
+		{
+			path: "/blog",
+			component: _be56a522,
+			children: [
+				{
+					path: "",
+					component: _4b7f24b2,
+					name: "blog-index"
+				},
+				{
+					path: ":id",
+					component: _3592ab9a,
+					name: "blog-index-id"
+				}
+			]
 		}
     ],
     fallback: false

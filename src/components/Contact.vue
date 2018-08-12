@@ -1,8 +1,8 @@
 <template lang='pug'>
 section.contact
-  .twitter.icon
-  .gmail.icon
-  .github.icon
+  a.twitter.icon(href='https://twitter.com/albasimia' target='_blank')
+  a.github.icon(href='https://github.com/albasimia' target="_blank")
+  a.gmail.icon(href='mailto:albasimia888+lp@gmail.com')
 
 </template>
 
@@ -24,26 +24,28 @@ export default {
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
+    flex-wrap: wrap;
+  justify-content: space-between;
+  @include pc-layout{
+  flex-direction: row;
+  align-items: center;
+  }
+  @include sp-layout{
+  flex-direction: column;
+  }
 }
 .icon {
-  position: absolute;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  top: 50%;
   opacity: 0.7;
-  @include pc-layout {
-    width: 40vw;
-    height: 50vh;
-  }
-  @include sp-layout {
-    width: 35vw;
-    height: 35vw;
-  }
+  flex: 1;
+  height: 30%;
+  margin: 5%;
+  transition: all 300ms 0s ease;
 }
 .twitter {
-  left: 5%;
-  transform: translateY(-90%);
   background-image: url("https://icongr.am/simple/twitter.svg?color=00FFFF");
   &:hover {
     opacity: 1;
@@ -51,17 +53,12 @@ export default {
   }
 }
 .github {
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-image: url("https://icongr.am/simple/github.svg?colored");
   &:hover {
-    // background-image: url("https://icongr.am/simple/github.svg?colored");
     opacity: 1;
   }
 }
 .gmail {
-  right: 5%;
-  transform: translateY(-10%);
   background-image: url("https://icongr.am/simple/gmail.svg?color=FF00FF");
   &:hover {
     background-image: url("https://icongr.am/simple/gmail.svg?colored");
