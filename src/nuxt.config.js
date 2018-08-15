@@ -1,3 +1,8 @@
+const title = "albasimia's portfolio"
+const description = "albasimiaのポートフォリオサイトです。web制作等、承ります。"
+const url = "localhost:3000"
+const og_image_url = "https://firebasestorage.googleapis.com/v0/b/albasimia-blog.appspot.com/o/flamelink%2Fmedia%2F1533991136236_12th_logo.png?alt=media"
+const twitter = "@albasimia"
 module.exports = {
   // css: [
   //     '@/assets/scss/main.scss',
@@ -19,7 +24,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'albasimia-blog',
+    title: title,
     meta: [{
         charset: 'utf-8'
       },
@@ -30,7 +35,75 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'blog'
+        content: description
+      },
+      {
+        hid: 'iOS_phone_number',
+        name: "format-detection",
+        content: "telephone=no"
+      },
+      // ogp
+      {
+        hid:"og_url",
+        property: "og:url",
+        content: url
+      },
+      {
+        hid:"og_image_url",
+        property: "og:image",
+        content: og_image_url
+      },
+      {
+        property: "og:type",
+        content: "website"
+      },
+      {
+        hid:"og_title",
+        property: "og:title",
+        content: title
+      },
+      {
+        hid:"og_site_name",
+        property: "og:site_name",
+        content: title
+      },
+      {
+        hid: "og_description",
+        property: "og:description",
+        content: description
+      },
+      {
+        property: "og:locale",
+        content: "ja_JP"
+      },
+      // twitter card
+      {
+        hid: "twitter_card",
+        property: "twitter:card",
+        content: 'summary_large_image'
+      },
+      {
+        hid: "twitter_title",
+        property: "twitter:title",
+        content: title
+      },
+      {
+        hid: "twitter_description",
+        property: "twitter:description",
+        content: description
+      },
+      {
+        hid: "twitter_image",
+        property: "twitter:image",
+        content: og_image_url
+      },
+      {
+        property: "twitter:site",
+        content: twitter
+      },
+      {
+        property: "twitter:creator",
+        content: twitter
       }
     ],
     link: [{
@@ -39,19 +112,17 @@ module.exports = {
       href: '/favicon.ico'
     }]
   },
-  modules: [
-    {
-      src: 'nuxt-firebase',
-      options: {
-        apiKey: "AIzaSyAFcYcevIvsPEiUHxo34kCoWRCySbswsd4",
-        authDomain: "albasimia-blog.firebaseapp.com",
-        databaseURL: "https://albasimia-blog.firebaseio.com",
-        projectId: "albasimia-blog",
-        storageBucket: "albasimia-blog.appspot.com",
-        messagingSenderId: "692821435666"
-      }
+  modules: [{
+    src: 'nuxt-firebase',
+    options: {
+      apiKey: "AIzaSyAFcYcevIvsPEiUHxo34kCoWRCySbswsd4",
+      authDomain: "albasimia-blog.firebaseapp.com",
+      databaseURL: "https://albasimia-blog.firebaseio.com",
+      projectId: "albasimia-blog",
+      storageBucket: "albasimia-blog.appspot.com",
+      messagingSenderId: "692821435666"
     }
-  ],
+  }],
   /*
    ** Customize the progress bar color
    */
@@ -65,6 +136,7 @@ module.exports = {
   build: {
     publicPath: '/assets/',
     extractCSS: true,
+    ssr: true,
     babel: {
       presets: [
         'env',

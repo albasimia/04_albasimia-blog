@@ -8,6 +8,9 @@ const _4e968fc4 = () => import('../../src/pages/template.vue' /* webpackChunkNam
 const _be56a522 = () => import('../../src/pages/blog/index.vue' /* webpackChunkName: "pages/blog/index" */).then(m => m.default || m)
 const _4b7f24b2 = () => import('../../src/pages/blog/index/index.vue' /* webpackChunkName: "pages/blog/index/index" */).then(m => m.default || m)
 const _3592ab9a = () => import('../../src/pages/blog/index/_id.vue' /* webpackChunkName: "pages/blog/index/_id" */).then(m => m.default || m)
+const _d6b8c512 = () => import('../../src/pages/blog/tag.vue' /* webpackChunkName: "pages/blog/tag" */).then(m => m.default || m)
+const _3ec575ed = () => import('../../src/pages/blog/tag/hoge.vue' /* webpackChunkName: "pages/blog/tag/hoge" */).then(m => m.default || m)
+const _d38db4ba = () => import('../../src/pages/blog/tag/_tag.vue' /* webpackChunkName: "pages/blog/tag/_tag" */).then(m => m.default || m)
 
 
 
@@ -66,6 +69,23 @@ export function createRouter () {
 					path: ":id",
 					component: _3592ab9a,
 					name: "blog-index-id"
+				}
+			]
+		},
+		{
+			path: "/blog/tag",
+			component: _d6b8c512,
+			name: "blog-tag",
+			children: [
+				{
+					path: "hoge",
+					component: _3ec575ed,
+					name: "blog-tag-hoge"
+				},
+				{
+					path: ":tag?",
+					component: _d38db4ba,
+					name: "blog-tag-tag"
 				}
 			]
 		}

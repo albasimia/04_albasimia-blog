@@ -6,22 +6,74 @@ section.blog__article(v-if='this.$store.state.content')
         span.time {{this.$store.state.content.time}}
     .tag__wrapper
       .tag(v-for='value in $store.state.content.tag')
-        nuxt-link(to='/blog') {{value}} 
+        nuxt-link(:to="'/blog/tag/' + value") {{value}}
     vue-markdown.markdown-body(v-if='$store.state.content.content') {{$store.state.content.content}}
   nuxt-link.prev(v-if='this.getPrevIndex' v-bind:to="'/blog/' + this.getPrevIndex")
   nuxt-link.next(v-if='this.getNextIndex' v-bind:to="'/blog/' + this.getNextIndex")
 </template>
 
 <script>
+import Prism from "~/assets/js/prism.js";
 export default {
-  data() {
+  head() {
+    const title = this.$store.state.content.title
+    const description = this.$store.state.content.description? this.$store.state.content.description : this.$store.state.content.content.slice(0, 200)
+    const og_image_url = "localhost:3000/blog.png"
     return {
-      pageId: null,
-      title: null,
-      date: null,
-      time: null,
-      tag: null,
-      content: null
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: description
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: description
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: description
+        },
+        // ogp
+        {
+          hid: "og_image_url",
+          property: "og:image",
+          content: og_image_url
+        },
+        {
+          hid: "og_title",
+          property: "og:title",
+          content: title
+        },
+        {
+          hid: "og_site_name",
+          property: "og:site_name",
+          content: title
+        },
+        {
+          hid: "og_description",
+          property: "og:description",
+          content: description
+        },
+        // twitter card
+        {
+          hid: "twitter_title",
+          property: "twitter:title",
+          content: title
+        },
+        {
+          hid: "twitter_description",
+          property: "twitter:description",
+          content: description
+        },
+        {
+          hid: "twitter_image",
+          property: "twitter:image",
+          content: og_image_url
+        }
+      ]
     };
   },
   computed: {
@@ -52,6 +104,7 @@ export default {
     const data = {
       pageId: context.route.params.id,
       title: contentObj.title,
+      description: contentObj.description,
       date: contentObj.date,
       time: contentObj.time,
       tag: contentObj.tag,
@@ -60,7 +113,7 @@ export default {
     context.store.commit("setContent", data);
   },
   mounted() {
-    // console.log(this.$store.state.article)
+    Prism.highlightAll();
   },
   scrollToTop: true
 };
@@ -70,6 +123,7 @@ export default {
 @import "~/assets/scss/main.scss";
 .markdown-body {
   @import "github-markdown-css/github-markdown.css";
+  @import "prismjs/themes/prism.css";
   width: 90%;
   margin: 0 auto;
   color: #fff;
@@ -79,19 +133,22 @@ export default {
       list-style: circle;
     }
   }
+  pre {
+    color: black;
+  }
 }
+
 .blog__article {
   position: relative;
   height: auto;
-  margin-bottom: 50px;
+  margin-bottom: 48px;
   .prev,
   .next {
     position: fixed;
     top: 50vh;
     transform: translateY(-50%);
     width: 44px;
-    height: 100px;
-    // background-size: contain;
+    height: 96px;
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -104,10 +161,11 @@ export default {
     background-image: url("https://icongr.am/entypo/chevron-thin-right.svg?color=e7dd81");
   }
 }
+
 .blog__article__inner {
   position: relative;
-  margin: 100px auto 0px;
-  padding: 30px 0 50px;
+  margin: 80px auto 0px;
+  padding: 32px 0 48px;
   // transform: translateX(-1%);
   @include pc-layout {
     max-width: 800px;
@@ -118,8 +176,8 @@ export default {
   }
   &::before {
     position: absolute;
-    top: -5px;
-    left: -5px;
+    top: -4px;
+    left: -4px;
     content: "";
     height: 100%;
     width: 100%;
@@ -130,8 +188,8 @@ export default {
   }
   &::after {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 4px;
+    left: 4px;
     content: "";
     height: 100%;
     width: 100%;
@@ -140,23 +198,31 @@ export default {
     border-color: #ff00ff;
     pointer-events: none;
   }
-
   .title,
   .date,
   .time,
   .tag__wrapper {
     width: 90%;
-    margin: 0 auto 5px;
+    margin: 0 auto 4px;
   }
   .title {
-    font-size: 30px;
+    font-size: 32px;
+    overflow-wrap: break-word;
+    font-weight: bold;
   }
   .time {
     margin-left: 10px;
   }
   .tag {
     display: inline-block;
-    margin-right: 10px;
+    margin: 0 8px 8px 0;
+    background-color: rgb(231, 221, 129);
+    border-radius: 2px;
+    padding: 0 4px;
+    a,
+    a:visited {
+      color: black;
+    }
   }
 }
 </style>

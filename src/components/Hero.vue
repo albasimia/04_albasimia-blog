@@ -2,9 +2,9 @@
 section.hero
     .hero_name
         .hero_text_wrap
-            span.hero_text.cyan albasimia
             span.hero_text.magenta albasimia
-            span.hero_text(@mouseenter='addHover' @mouseleave='removeHover') albasimia
+            span.hero_text.base(@mouseenter='addHover' @mouseleave='removeHover') albasimia
+            span.hero_text.cyan albasimia
 </template>
 
 <style lang='scss' scopde>
@@ -13,46 +13,49 @@ section.hero
   width: 100%;
   height: 100vh;
   position: relative;
-}
-
-.hero_name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-.hero_text_wrap {
-  position: relative;
-}
-
-.hero_text {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  @include pc-layout {
-    font-size: 8vw;
+  background-image: url("/ana_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  .hero_name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
-  @include sp-layout {
-    font-size: 15vw;
+
+  .hero_text_wrap {
+    position: relative;
   }
-}
 
-.cyan {
-  color: rgba(cyan,0.6);
-  transform: translate(-55%, -50%);
-  transition: all 300ms 0s ease;
-  pointer-events: none;
-}
-
-.magenta {
-  color: rgba(magenta, 0.6);
-  transform: translate(-45%, -50%);
-  transition: all 300ms 0s ease;
-  pointer-events: none;
-}
-
-.is-hover {
-  transform: translate(-50%, -50%);
+  .hero_text {
+    position: absolute;
+    font-weight: bold;
+    color: rgba(black, 0.4);
+    transform: translate(-14%, -50%);
+    @include pc-layout {
+      font-size: 8vw;
+    }
+    @include sp-layout {
+      font-size: 15vw;
+    }
+  }
+  .base {
+    // -webkit-text-stroke: 2px black;
+  }
+  .cyan {
+    color: rgba(0, 175, 185, 0.6);
+    transform: translate(-13%,-50%);
+    transition: all 300ms 0s ease;
+    pointer-events: none;
+  }
+  .magenta {
+    color: rgba(255, 0, 5, 0.6);
+    transform: translate(-18%,-50%);
+    transition: all 300ms 0s ease;
+    pointer-events: none;
+  }
+  .is-hover {
+    transform: translate(-50%, -50%);
+  }
 }
 </style>
 

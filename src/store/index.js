@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 const store = () => new Vuex.Store({
   state: {},
   mutations: {
+    setSearch(state, value) {
+      state.search = value
+    },
     setContent(state, value) {
       state.content = value
     },
@@ -13,9 +16,7 @@ const store = () => new Vuex.Store({
   actions: {
     async asyncArticle(ctx) {
       const article = await this.$flamelink.content
-        .getByField('article', 'status', 'published', {
-          orderByChild: 'date'
-        })
+        .getByField('article', 'status', 'published')
         .then(products => {
           return products
         })

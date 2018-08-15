@@ -5,6 +5,17 @@
       ".write": "auth != null",
       "users": {
         ".indexOn": ["email"]
+      },
+      "environments": {
+        "production": {
+          "content": {
+            "article": {
+              "$en-US": {
+                ".indexOn": ["status"]
+              }
+            }
+          }
+        }
       }
     }
   }
